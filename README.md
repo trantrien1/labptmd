@@ -10,7 +10,7 @@ imodule https://raw.githubusercontent.com/trantrien1/labptmd/main/mal-ai-model-a
 labtainer mal-ai-model-analysis
 ```
 
-- On the first run Labtainer pulls the image `trantrien1/mal-ai-model-analysis.analyst.student` from Docker Hub (about 4 GB), so it takes a while.
+- On the first run Labtainer pulls the image `trantrien/mal-ai-model-analysis.analyst.student` from Docker Hub (about 4 GB), so it takes a while.
 - Container login: user `ubuntu` / password `ubuntu`. The handout is in `docs/mal-ai-model-analysis.docx`.
 - Fill in `~/result.txt`, check your answers with `checkwork`, and submit with `stoplab`.
 - Restart the lab from scratch: `labtainer -r mal-ai-model-analysis`
