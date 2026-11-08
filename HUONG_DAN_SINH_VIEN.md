@@ -372,9 +372,23 @@ cat ~/result.txt
 Các lệnh dưới đây chạy trên **terminal của máy ảo**, chỗ bạn đã gõ `labtainer`, không chạy trong container:
 
 ```bash
-checkwork mal-ai-model-analysis      # tự kiểm tra trường nào đúng/sai (nếu giảng viên cho phép)
+checkwork mal-ai-model-analysis      # tự kiểm tra nhóm nào đúng/sai (nếu giảng viên cho phép)
 stoplab mal-ai-model-analysis        # kết thúc lab, tạo file zip để nộp
 ```
+
+Mỗi cột trong bảng `checkwork` gom một nhóm trường. Cột chỉ ra **Y** khi mọi trường trong nhóm đều đúng:
+
+| Cột | Trường trong `result.txt` |
+|---|---|
+| `t1_hash` | `T1_MD5_NEW_PB`, `T1_SHA256_NEW_PB`, `T1_HASH_MATCH`, `T1_FILES_FAILED` |
+| `t1_diff` | `T1_SIZE_DIFF_BYTES` → `T1_REGION_HEAD_HEX` |
+| `t2_extract` | `T2_REGION_SHA256` → `T2_EXTRACTED_SIZE` |
+| `t2_ioc` | `T2_MESSAGE`, `T2_DOWNLOAD_TOOL`, `T2_PAYLOAD_URL`, `T2_C2_HOST` |
+| `t3_behavior` | `T3_PRED_CLEAN` → `T3_HTTP_USER_AGENT` |
+| `t3_trigger` | `T3_SERVER_LOG_DELTA_CLEAN` → `T3_TRIGGER_IMAGE_COUNT` |
+| `questions_answered` | Đã trả lời đủ Q1..Q11 |
+| `dyn_beacon_seen` | `~/mock_server/server.log` có request của stage2 |
+| `dyn_strace_curl` | `~/strace_new.log` ghi lại lệnh `curl` |
 
 `stoplab` in ra đường dẫn file zip kết quả. Nộp file zip đó lên hệ thống.
 
