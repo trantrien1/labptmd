@@ -39,10 +39,10 @@ labtainer mal-ai-model-analysis
 ```
 
 - Lần đầu Labtainer sẽ tải image khoảng 1.5–2 GB, có thể mất vài phút.
-- Lab mở **2 terminal** trong container `analyst` (user `ubuntu`, mật khẩu `ubuntu`):
-  - **Terminal 1 - Lam bai (Nhiem vu 1, 2, 3)**: làm toàn bộ bài.
-  - **Terminal 2 - Bat goi tin tcpdump (Nhiem vu 3)**: chỉ dùng để chạy `tcpdump` ở Nhiệm vụ 3, Phần B.
-- Cần thêm terminal thì chạy lệnh này trên máy ảo: `moreterm.py mal-ai-model-analysis analyst`.
+- Lab mở 2 cửa sổ:
+  - **`ubuntu@analyst`**: terminal làm bài (user `ubuntu`, mật khẩu `ubuntu`).
+  - **`C2-Server`**: log của mock C2 server (`127.0.0.1:8899`). Mỗi request gửi tới server hiện ngay ở đây. Cửa sổ này chỉ để xem, không gõ lệnh.
+- Cần thêm một terminal `ubuntu@analyst` (ví dụ để chạy tcpdump ở Nhiệm vụ 3), chạy lệnh này trên máy ảo: `moreterm.py mal-ai-model-analysis analyst`.
 
 Các file trong thư mục home (`~`) của container:
 
@@ -283,11 +283,11 @@ TensorFlow có thể in vài dòng `WARNING ... absl` / `oneDNN ...`. Các dòng
 
 ### B. Bắt gói tin bằng tcpdump
 
-1. Ở **Terminal 2 - Bat goi tin tcpdump** (mật khẩu sudo: `ubuntu`):
+1. Mở thêm một terminal bằng lệnh `moreterm.py mal-ai-model-analysis analyst` (chạy trên máy ảo). Trong terminal mới, chạy (mật khẩu sudo: `ubuntu`):
    ```bash
    sudo tcpdump -i lo -nn -w ~/capture_new.pcap
    ```
-2. Ở **Terminal 1 - Lam bai**, chạy lại mô hình nghi vấn với `house_01.jpg` (không cần strace). Sau đó quay lại Terminal 2 bấm `Ctrl+C`.
+2. Ở terminal làm bài, chạy lại mô hình nghi vấn với `house_01.jpg` (không cần strace). Cửa sổ `C2-Server` sẽ hiện thêm một dòng `GET`. Sau đó quay lại terminal đang chạy tcpdump và bấm `Ctrl+C`.
 3. Đọc các request HTTP:
    ```bash
    tcpdump -nn -A -r ~/capture_new.pcap 2>/dev/null | grep -E 'GET |POST |Host:|User-Agent:'
