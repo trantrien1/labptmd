@@ -2,6 +2,8 @@
 
 Labtainer lab **mal-ai-model-analysis**: analyzing a tampered AI model (static plus dynamic, sandbox only).
 
+Step-by-step student guide (Vietnamese): [HUONG_DAN_SINH_VIEN.md](HUONG_DAN_SINH_VIEN.md)
+
 ## Running it on the Labtainer VM
 
 ```bash
